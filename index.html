@@ -1,57 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taylor Swift Album Countdown</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #ffccff;
-      color: #333;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      font-size: 2.5em;
-      color: #ff0066;
-    }
-    .countdown {
-      font-size: 2em;
-      font-weight: bold;
-      color: #ff3399;
-    }
-    .emoji {
-      font-size: 1.5em;
-    }
-  </style>
-</head>
-<body>
-  <h1>🎤 Taylor Swift's New Album Drops In:</h1>
-  <div class="countdown" id="countdown"></div>
-  <p class="emoji">💿💖✨</p>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: #333;
+    background: linear-gradient(135deg, #ff9900, #ff6600);
+    overflow: hidden;
+    position: relative;
+  }
 
-  <script>
-    const releaseDate = new Date('2025-10-03T05:00:00+02:00'); // South Africa time
+  h1 {
+    font-size: 2.5em;
+    color: #ff0066;
+    text-shadow: 0 0 10px #ff3399, 0 0 20px #ff6699;
+  }
 
-    function updateCountdown() {
-      const now = new Date();
-      const timeDiff = releaseDate - now;
+  .countdown {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff3399;
+    text-shadow: 0 0 5px #ff99cc;
+  }
 
-      if (timeDiff <= 0) {
-        document.getElementById('countdown').innerHTML = '🎉 It\'s here! The Life of a Showgirl is out now! 🎉';
-        clearInterval(countdownInterval);
-      } else {
-        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  .emoji {
+    font-size: 1.5em;
+  }
 
-        document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
+  /* Glitter flakes */
+  .glitter {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-10px) translateX(0);
+      opacity: 0.8;
     }
+    100% {
+      transform: translateY(110vh) translateX(20px);
+      opacity: 0;
+    }
+  }
+</style>
 
-    const countdownInterval = setInterval(updateCountdown, 1000);
-  </script>
-</body>
-</html>
+<script>
+  // Create glitter flakes
+  const glitterCount = 100;
+  for (let i = 0; i < glitterCount; i++) {
+    const glitter = document.createElement('div');
+    glitter.classList.add('glitter');
+    glitter.style.left = Math.random() * 100 + 'vw';
+    glitter.style.top = Math.random() * 100 + 'vh';
+    glitter.style.width = glitter.style.height = Math.random() * 4 + 2 + 'px';
+    glitter.style.animationDuration = 2 + Math.random() * 3 + 's';
+    glitter.style.animationDelay = Math.random() * 5 + 's';
+    document.body.appendChild(glitter);
+  }
+</script>
