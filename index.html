@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taylor Swift Album Countdown</title>
 
-<!-- Force no caching -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
@@ -44,7 +42,6 @@
     margin-left: 2em;
   }
 
-  /* Sparkle flakes */
   .glitter {
     position: absolute;
     width: 3px;
@@ -60,12 +57,34 @@
     0%, 100% { opacity: 0; transform: scale(0.5); }
     50% { opacity: 1; transform: scale(1.5); }
   }
+
+  /* Mobile optimization */
+  @media (max-width: 480px) {
+    body {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-left: 1em;
+    }
+
+    .countdown {
+      font-size: 1.5em;
+      margin-left: 1em;
+    }
+
+    .emoji {
+      font-size: 1.5em;
+      margin-left: 1em;
+    }
+  }
 </style>
 </head>
 <body>
-  <h1>🎤 Taylor Swift's New Album Drops In:</h1>
-  <div class="countdown" id="countdown"></div>
-  <p class="emoji">💿💖✨</p>
+<h1>🎤 Taylor Swift's New Album Drops In:</h1>
+<div class="countdown" id="countdown"></div>
+<p class="emoji">💿💖✨</p>
 
 <script>
   // Countdown
@@ -89,24 +108,20 @@
 
   // Glitter sparkles
   document.addEventListener('DOMContentLoaded', () => {
-    const glitterCount = 200; // more sparkles
+    const glitterCount = 150; // slightly fewer for mobile
     for(let i=0;i<glitterCount;i++){
       const glitter = document.createElement('div');
       glitter.classList.add('glitter');
 
-      // random position
       glitter.style.left = Math.random() * 100 + 'vw';
       glitter.style.top = Math.random() * 100 + 'vh';
 
-      // random size
-      const size = Math.random() * 3 + 2;
+      const size = Math.random() * 2 + 2; // smaller sizes on mobile
       glitter.style.width = glitter.style.height = size + 'px';
 
-      // random animation duration & delay
       glitter.style.animationDuration = (1 + Math.random() * 2) + 's';
       glitter.style.animationDelay = Math.random() * 5 + 's';
 
-      // random color (orange/pink shades)
       const hue = Math.floor(Math.random() * 50 + 10);
       glitter.style.background = `hsl(${hue}, 100%, 85%)`;
       glitter.style.boxShadow = `0 0 ${size*2}px hsl(${hue}, 100%, 85%)`;
