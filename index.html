@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taylor Swift Album Countdown</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #ffccff;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #ff0066;
+    }
+    .countdown {
+      font-size: 2em;
+      font-weight: bold;
+      color: #ff3399;
+    }
+    .emoji {
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎤 Taylor Swift's New Album Drops In:</h1>
+  <div class="countdown" id="countdown"></div>
+  <p class="emoji">💿💖✨</p>
+
+  <script>
+    const releaseDate = new Date('2025-10-03T05:00:00+02:00'); // South Africa time
+
+    function updateCountdown() {
+      const now = new Date();
+      const timeDiff = releaseDate - now;
+
+      if (timeDiff <= 0) {
+        document.getElementById('countdown').innerHTML = '🎉 It\'s here! The Life of a Showgirl is out now! 🎉';
+        clearInterval(countdownInterval);
+      } else {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
